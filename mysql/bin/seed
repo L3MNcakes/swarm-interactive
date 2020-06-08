@@ -1,0 +1,5 @@
+#!/bin/sh
+SEED_DIR=/tmp/mysql/seed
+SEED_FILES=`find ${SEED_DIR} -name *.sql | xargs echo`
+
+cat ${SEED_FILES} | mysql -u root -p${MYSQL_ROOT_PASSWORD} -D db < ${SEED_FILES}

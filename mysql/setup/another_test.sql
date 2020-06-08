@@ -1,0 +1,5 @@
+CREATE TABLE `AnotherTest` (
+    `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    `message` TEXT,
+    PRIMARY KEY(`id`)
+) ENGINE=InnoDb;

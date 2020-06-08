@@ -1,0 +1,27 @@
+div {
+    width: 200px;
+    padding: 20px;
+    background-color: sienna;
+    margin: 10px;
+    border-radius: 5px;
+    font-family: 'Comic Sans MS';
+    display: inline-block;
+    border: 3px dotted white;
+    animation-name: spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+h1 {
+    text-align: center;
+}

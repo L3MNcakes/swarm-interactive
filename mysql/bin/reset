@@ -1,0 +1,4 @@
+#!/bin/sh
+RESET_QUERY='DROP DATABASE db; CREATE DATABASE db;'
+
+mysql -u root -p${MYSQL_ROOT_PASSWORD} -D db -e "${RESET_QUERY}"

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package swarm_interactive.test.v1;
+
+message TestRequest {
+    string name = 1;
+}
+
+message TestResponse {
+    string greeting = 1;
+}
+
+service TestService {
+    rpc Greet (TestRequest) returns (TestResponse) {}
+}

@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+    swarm-interactive-server:
+        build:
+            context: ./golang
+            dockerfile: ./Dockerfile
+            args:
+                project: ./cmd/swarm-interactive-server
+        environment:
+            - GRPC_PORT=3001
+            - HTTP_PORT=3002
+            - APP_NAME=swarm-interactive-server
+            - SERVE_ON=http
+        ports:
+            - 8001:3001
+            - 8002:3002
+        restart: on-failure
+        volumes:
+            - swarm-interactive-server_vol:/usr/src/swarm-interactive-server
+        networks:
+            - swarm-interactive-net
+
+    swarm-interactive-ui:
+        build:
+            context: ./typescript
+            dockerfile: ./Dockerfile
+        ports:
+            - 8003:4200
+        restart: on-failure
+        volumes:
+            - ./typescript/swarm-interactive-ui:/usr/src/app
+        networks:
+            - swarm-interactive-net
+
+    swarm-interactive-db:
+        image: mysql:latest
+        restart: always
+        environment:
+            - MYSQL_DATABASE=db
+            - MYSQL_USER=user
+            - MYSQL_PASSWORD=password
+            - MYSQL_ROOT_PASSWORD=root_password
+        ports:
+            - 8004:3306
+        volumes:
+            - swarm-interactive-db_vol:/var/lib/mysql
+            - ./mysql:/tmp/mysql
+        networks:
+            - swarm-interactive-net
+
+volumes:
+    swarm-interactive-server_vol:
+    swarm-interactive-db_vol:
+
+networks:
+    swarm-interactive-net:
+        driver: bridge

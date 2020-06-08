@@ -1,0 +1,5 @@
+#!/bin/sh
+SETUP_DIR=/tmp/mysql/setup
+SETUP_FILES=`find ${SETUP_DIR} -name *.sql | xargs echo`
+
+cat ${SETUP_FILES} | mysql -u root -p${MYSQL_ROOT_PASSWORD} -D db
